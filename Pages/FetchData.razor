@@ -42,5 +42,22 @@ else
     protected override async Task OnInitializedAsync()
     {
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        System.Console.WriteLine("[FetchData.razor][OnInitializedAsync] => (forecasts == null): " + (forecasts == null) );
+
+        if ( forecasts != null )
+        {
+            System.Console.WriteLine("[FetchData.razor][OnInitializedAsync] => forecasts.Length: " + forecasts.Length);
+
+            foreach ( var forecast in forecasts)
+            {
+                System.Console.WriteLine("");
+                System.Console.WriteLine("[FetchData.razor][OnInitializedAsync] => forecast.Date.........: " + forecast.Date.ToShortDateString());
+                System.Console.WriteLine("[FetchData.razor][OnInitializedAsync] => forecast.TemperatureC.: " + forecast.TemperatureC);
+                System.Console.WriteLine("[FetchData.razor][OnInitializedAsync] => forecast.TemperatureF.: " + forecast.TemperatureF);
+                System.Console.WriteLine("[FetchData.razor][OnInitializedAsync] => forecast.Summary......: " + forecast.Summary);
+                System.Console.WriteLine("");
+            }
+        }   
+
     }
 }
